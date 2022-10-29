@@ -33,87 +33,88 @@ class _sginupState extends State<sginup> {
     return StatefulBuilder(
       builder: (BuildContext context, setState) {
         return Scaffold(
-        body: ListView(
-          children: [
-            const Text("sgin up"),
-            AddVertecailSpacing(50),
-            customTextField(
-                theController: Email,
-                hint: "Email",
-                visbleText: false,
-                inputType: TextInputType.emailAddress),
-            AddVertecailSpacing(50),
-            customTextField(
-                theController: PassWord,
-                hint: "password",
-                visbleText: true,
-                inputType: TextInputType.text),
-            AddVertecailSpacing(50),
-            DropdownButton(
-              value: chosenColor,
-              items: colors
-                  .map((e) => DropdownMenuItem(
-                      value: e,
-                      child: Text(
-                        e,
-                        style: const TextStyle(color: Colors.black),
-                      )))
-                  .toList(),
-              onChanged: (value) {
-                setState(
-                  () {
-                    chosenColor = value.toString();
-                  },
-                );
-              },
-            ),
-            AddVertecailSpacing(50),
-            customElevatedBotton(
-                theFunction: () async {
-                  try {
-                    var authenticationObject = FirebaseAuth.instance;
-                    UserCredential myUser =
-                        await authenticationObject.createUserWithEmailAndPassword(
-                            email: Email.text, password: PassWord.text);
-                    saveAcount(color: chosenColor, email: Email.text);
-    
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("signed up successfully"),
-                      ),
-                    );
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const login(),
-                        ));
-                  } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("The email address or password is wrong"),
-                      ),
-                    );
-                  }
+          body: ListView(
+            children: [
+              const Text("sgin up"),
+              AddVertecailSpacing(50),
+              customTextField(
+                  theController: Email,
+                  hint: "Email",
+                  visbleText: false,
+                  inputType: TextInputType.emailAddress),
+              AddVertecailSpacing(50),
+              customTextField(
+                  theController: PassWord,
+                  hint: "password",
+                  visbleText: true,
+                  inputType: TextInputType.text),
+              AddVertecailSpacing(50),
+              DropdownButton(
+                value: chosenColor,
+                items: colors
+                    .map((e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(
+                          e,
+                          style: const TextStyle(color: Colors.black),
+                        )))
+                    .toList(),
+                onChanged: (value) {
+                  setState(
+                    () {
+                      chosenColor = value.toString();
+                    },
+                  );
                 },
-                theText: "sgin up"),
-            AddVertecailSpacing(50),
-            Row(
-              children: [
-                const Text("already have account?"),
-                TextButton(
-                    onPressed: () {
+              ),
+              AddVertecailSpacing(50),
+              customElevatedBotton(
+                  theFunction: () async {
+                    try {
+                      var authenticationObject = FirebaseAuth.instance;
+                      UserCredential myUser = await authenticationObject
+                          .createUserWithEmailAndPassword(
+                              email: Email.text, password: PassWord.text);
+                      saveAcount(color: chosenColor, email: Email.text);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("signed up successfully"),
+                        ),
+                      );
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const login(),
                           ));
-                    },
-                    child: const Text("sgin in"))
-              ],
-            )
-          ],
-        ),
-      );
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content:
+                              Text("The email address or password is wrong"),
+                        ),
+                      );
+                    }
+                  },
+                  theText: "sgin up"),
+              AddVertecailSpacing(50),
+              Row(
+                children: [
+                  const Text("already have account?"),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const login(),
+                            ));
+                      },
+                      child: const Text("sgin in"))
+                ],
+              )
+            ],
+          ),
+        );
       },
     );
   }
