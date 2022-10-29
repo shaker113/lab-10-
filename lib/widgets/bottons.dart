@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 class customElevatedBotton extends StatelessWidget {
   final String theText;
   final Function() theFunction;
@@ -25,5 +25,6 @@ class customElevatedBotton extends StatelessWidget {
       ),
     );
   }
-}
 
+  
+}
