@@ -107,14 +107,16 @@ class _sginupState extends State<sginup> {
                   children: [
                     const Text("already have account?"),
                     TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const login(),
-                              ));
-                        },
-                        child: const Text("sgin in"))
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const login(),
+                          ),
+                        );
+                      },
+                      child: const Text("sgin in"),
+                    )
                   ],
                 )
               ],

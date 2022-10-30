@@ -17,8 +17,8 @@ class AdjectivePage extends StatefulWidget {
 class _AdjectivePageState extends State<AdjectivePage> {
   @override
   void initState() {
-    background(userColor);
     checkColor();
+    background(userColor);
     super.initState();
   }
 
@@ -28,7 +28,7 @@ class _AdjectivePageState extends State<AdjectivePage> {
     return StreamBuilder<QuerySnapshot>(
       stream: user.snapshots(),
       builder: (BuildContext context, snapshot) {
-        if (snapshot.hasData) {
+        if (snapshot.hasData || isList == true || isList == false) {
           return Scaffold(
             appBar: AppBar(
               title: const Text('Adjective'),
@@ -70,13 +70,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  @override
-  void initState() {
-    background(userColor);
-    checkColor();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(

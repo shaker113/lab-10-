@@ -35,7 +35,7 @@ background(String? color) {
     isList = false;
     return AppColors.yellow;
   }
-  if (color == 'green') {
+  if (color == 'Green') {
     isList = false;
     return AppColors.green;
   }
@@ -94,14 +94,10 @@ class _loginState extends State<login> {
                         content: Text("signed in successfully"),
                       ),
                     );
-                    setState(() {
-                      checkColor();
-                      background(userColor);
-                    });
-
+                    checkColor();
+                    background(userColor);
                     print(userColor);
                     print(List);
-                    // ignore: use_build_context_synchronously
                     Navigator.push(
                         context,
                         MaterialPageRoute(
