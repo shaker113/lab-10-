@@ -1,18 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:lab10/screens/home.dart';
 import 'package:lab10/screens/sgin_in.dart';
-import 'package:lab10/theme/app_color.dart';
 import 'package:lab10/widgets/bottons.dart';
 import 'package:lab10/widgets/spacing.dart';
 
-bool? isList;
-
 class AdjectivePage extends StatefulWidget {
   AdjectivePage({super.key});
-
   static String group = '';
 
   @override
@@ -23,51 +18,11 @@ class _AdjectivePageState extends State<AdjectivePage> {
   @override
   void initState() {
     background(userColor);
-
     checkColor();
-
     super.initState();
   }
 
   CollectionReference user = FirebaseFirestore.instance.collection('user');
-  background(String? color) {
-    if (color == 'White') {
-      isList = false;
-
-      return AppColors.white;
-    }
-    if (color == 'Red') {
-      isList = false;
-
-      return AppColors.red;
-    }
-    if (color == 'Blue') {
-      isList = false;
-
-      return AppColors.blue;
-    }
-    if (color == 'Yellow') {
-      isList = false;
-
-      return AppColors.yellow;
-    }
-    if (color == 'green') {
-      isList = false;
-
-      return AppColors.green;
-    }
-    if (color == 'Red And Blue') {
-      isList = true;
-
-      return AppColors.redAndBlue;
-    }
-    if (color == 'Rainbow') {
-      isList = true;
-
-      return AppColors.reinbow;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -116,6 +71,13 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   @override
+  void initState() {
+    background(userColor);
+    checkColor();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
@@ -161,6 +123,8 @@ class _BodyState extends State<Body> {
               role.update({
                 'role': value.toString(),
               });
+              print(userColor);
+              print(isList);
             },
           ),
           const SizedBox(height: 20),
@@ -180,6 +144,10 @@ class _BodyState extends State<Body> {
                 await FirebaseAuth.instance.signOut();
                 Navigator.popUntil(
                     context, ModalRoute.withName(Navigator.defaultRouteName));
+                // userColor = null;
+                // isList = null;
+                // print(userColor);
+                // print(isList);
               },
               theText: "log out")
         ],

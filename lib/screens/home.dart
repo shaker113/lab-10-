@@ -13,50 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   CollectionReference user = FirebaseFirestore.instance.collection('user');
-  @override
-  void initState() {
-    checkColor();
-    background(userColor);
-    super.initState();
-  }
 
-  background(String? color) {
-    if (color == 'White') {
-      isList = false;
-
-      return AppColors.white;
-    }
-    if (color == 'Red') {
-      isList = false;
-
-      return AppColors.red;
-    }
-    if (color == 'Blue') {
-      isList = false;
-
-      return AppColors.blue;
-    }
-    if (color == 'Yellow') {
-      isList = false;
-
-      return AppColors.yellow;
-    }
-    if (color == 'green') {
-      isList = false;
-
-      return AppColors.green;
-    }
-    if (color == 'Red And Blue') {
-      isList = true;
-
-      return AppColors.redAndBlue;
-    }
-    if (color == 'Rainbow') {
-      isList = true;
-
-      return AppColors.reinbow;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
